@@ -1,0 +1,13 @@
+bootJar { enabled = false }
+jar { enabled = true }
+
+dependencies {
+    api 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    // jackson
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.0.1'
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.0.1'
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.0.1'
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.0.1'
+
+}

@@ -1,0 +1,21 @@
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+    implementation group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
+
+    // core-module dependency
+    implementation project(':core-module')
+
+    //mysql
+    implementation 'mysql:mysql-connector-java:8.0.33'
+
+    //jwt
+    implementation group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.11.5'
+    runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.11.5'
+    runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.11.5'
+
+    //test
+    implementation 'org.springframework.security:spring-security-test'
+}
