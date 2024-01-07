@@ -36,7 +36,6 @@ import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
  */
 @Configuration
 @EnableWebSecurity
-@EnableMethodSecurity
 @RequiredArgsConstructor
 public class WebSecurityConfig {
 
