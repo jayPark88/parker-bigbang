@@ -1,5 +1,3 @@
 rootProject.name = 'parker-bigbang'
 include 'admin-module'
 include 'core-module'
-include 'core-module'
-
