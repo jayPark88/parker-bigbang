@@ -11,9 +11,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
  * ㄴ JwtSecurityConfig
  *
  * <pre>
- * description :TokenProvider를 주입받아서 jwtFilter를 통해 security로직에 등록한다..
- * 아니 어차피 securityConfig에 등록할 거면서 왜 config를 왜 여기서 등록하지...??
- * securityConfig에는
+ * JwtSecurityConfig를 사용하는 방식은 구성(config) 클래스를 통해 세부적인 설정들을 모듈화하고 분리할 수 있어 관리하기 쉽다는 장점이 있습니다.
+ * (https://blog.naver.com/jihoons88/223314673697)
  * </pre>
  *
  * <pre>

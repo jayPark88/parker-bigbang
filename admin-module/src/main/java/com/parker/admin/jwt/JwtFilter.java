@@ -21,7 +21,8 @@ import java.io.IOException;
  *
  * <pre>
  * description : Spring Security에 JwtFilter를 동작시키기 위한 필터
- * GenericFilterBean은 Filter 인터페이스를 확장하면서 Spring의 IoC 컨테이너에서 관리되는 빈으로 등록되기 때문에, 의존성 주입을 쉽게 활용할 수 있습니다. 필터가 사용하는 다양한 빈들을 @Autowired 어노테이션을 사용하여 주입받을 수 있습니다.
+ * GenericFilterBean은 Filter 인터페이스를 확장하면서 Spring의 IoC 컨테이너에서 관리되는 빈으로 등록되기 때문에,
+ * 의존성 주입을 쉽게 활용할 수 있습니다. 필터가 사용하는 다양한 빈들을 @Autowired 어노테이션을 사용하여 주입받을 수 있습니다.
  * </pre>
  *
  * <pre>
