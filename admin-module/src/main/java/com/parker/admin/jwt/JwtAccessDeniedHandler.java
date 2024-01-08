@@ -1,8 +1,7 @@
 package com.parker.admin.jwt;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.parker.admin.common.CommonErrorResponse;
-import jakarta.servlet.ServletException;
+import com.parker.admin.common.CommonResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -41,9 +40,9 @@ public class JwtAccessDeniedHandler implements AccessDeniedHandler {
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException) throws IOException{
 
-        CommonErrorResponse commonErrorResponse = new CommonErrorResponse(FAIL_401.code(), messageSource.getMessage("http.status.unauthorized",null, Locale.getDefault()));
+        CommonResponse<?> commonResponse = new CommonResponse<>(FAIL_401.code(), messageSource.getMessage("http.status.unauthorized",null, Locale.getDefault()));
 
-        String responseString = objectMapper.writeValueAsString(commonErrorResponse);
+        String responseString = objectMapper.writeValueAsString(commonResponse);
 
         response.setContentType("application/json; charset=UTF-8");
         response.getWriter().append(responseString);

@@ -1,6 +1,6 @@
 package com.parker.admin.exception;
 
-import com.parker.admin.common.CommonErrorResponse;
+import com.parker.admin.common.CommonResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -24,8 +24,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
     @ExceptionHandler({CustomException.class})
-    public ResponseEntity<CommonErrorResponse> handleCustomException(CustomException exception) {
-        CommonErrorResponse commonErrorResponse = new CommonErrorResponse(exception.getErrorCode(), exception.getMessage());
-        return ResponseEntity.status(exception.getHttpStatus()).body(commonErrorResponse);
+    public ResponseEntity<CommonResponse<?>> handleCustomException(CustomException exception) {
+        CommonResponse<?> commonResponse = new CommonResponse<>(exception.getErrorCode(), exception.getMessage());
+        return ResponseEntity.status(exception.getHttpStatus()).body(commonResponse);
     }
 }
