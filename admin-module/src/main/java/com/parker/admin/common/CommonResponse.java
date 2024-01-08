@@ -22,12 +22,19 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CommonResponse<T> {
-    private final boolean result = true;
-    private String message;
+    private boolean result;
     private T data;
+    private String errorCode;
+    private String errorMessage;
 
     public CommonResponse(T data) {
+        this.result = true;
         this.data = data;
-        this.message = "SUCCESS";
+    }
+
+    public CommonResponse(String errorCode, String errorMessage) {
+        this.result = false;
+        this.errorCode= errorCode;
+        this.errorMessage= errorMessage;
     }
 }
