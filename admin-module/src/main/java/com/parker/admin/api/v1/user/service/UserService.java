@@ -47,7 +47,7 @@ public class UserService {
 
     @Transactional
     public User signUp(UserDto userDto){
-        if(!ObjectUtils.isEmpty(userRepository.findOneWithAuthoritiesByUserName(userDto.getUserName()).orElse(null))){
+        if(userRepository.findOneWithAuthoritiesByUserName(userDto.getUserName()).isEmpty()){
             throw new CustomException(FAIL_2000.code(), messageSource.getMessage("error.2000",new String[]{userDto.getUserName()}, Locale.getDefault()), HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
