@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.util.Locale;
 
 import static com.parker.admin.exception.enums.ResponseErrorCode.FAIL_401;
+import static com.parker.admin.exception.enums.ResponseErrorCode.FAIL_403;
 
 /**
  * com.parker.admin.jwt
@@ -40,13 +41,13 @@ public class JwtAccessDeniedHandler implements AccessDeniedHandler {
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException) throws IOException{
 
-        CommonResponse<?> commonResponse = new CommonResponse<>(FAIL_401.code(), messageSource.getMessage("http.status.unauthorized",null, Locale.getDefault()));
+        CommonResponse<?> commonResponse = new CommonResponse<>(FAIL_403.code(), messageSource.getMessage("http.status.forbidden",null, Locale.getDefault()));
 
         String responseString = objectMapper.writeValueAsString(commonResponse);
 
         response.setContentType("application/json; charset=UTF-8");
         response.getWriter().append(responseString);
-        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+        response.setStatus(HttpServletResponse.SC_FORBIDDEN);
         response.getWriter().flush();
     }
 }
