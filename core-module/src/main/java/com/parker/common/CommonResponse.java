@@ -1,4 +1,4 @@
-package com.parker.admin.common;
+package com.parker.common;
 
 import lombok.Getter;
 import lombok.Setter;

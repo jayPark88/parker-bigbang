@@ -1,6 +1,7 @@
-package com.parker.admin.exception;
+package com.parker.common.exception;
 
-import com.parker.admin.common.CommonResponse;
+import com.parker.common.CommonResponse;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;

@@ -1,28 +1,24 @@
 package com.parker.admin.api.v1.login.controller;
 
 import com.parker.admin.api.v1.login.service.AuthService;
-import com.parker.admin.common.CommonResponse;
-import com.parker.admin.dto.LoginDto;
-import com.parker.admin.dto.TokenDto;
-import com.parker.admin.exception.CustomException;
+import com.parker.common.CommonResponse;
+import com.parker.common.exception.CustomException;
+import com.parker.dto.LoginDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
-import java.util.HashMap;
 import java.util.Locale;
-import java.util.Map;
 
-import static com.parker.admin.exception.enums.ResponseErrorCode.FAIL_401;
+import static com.parker.common.exception.enums.ResponseErrorCode.FAIL_401;
+
 
 /**
  * com.parker.admin.api.v1.login.controller
@@ -52,7 +48,7 @@ public class AuthController {
     @PostMapping("/login")
     public CommonResponse<?> authorize(@Valid @RequestBody LoginDto loginDto, BindingResult bindingResult) {
 
-        if(bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             throw new CustomException(FAIL_401.code(), messageSource.getMessage("http.status.unauthorized", null, Locale.getDefault()), HttpStatus.UNAUTHORIZED);
         }
         return authService.authorize(loginDto);

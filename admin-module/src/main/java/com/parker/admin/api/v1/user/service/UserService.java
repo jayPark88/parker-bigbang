@@ -1,11 +1,11 @@
 package com.parker.admin.api.v1.user.service;
 
-import com.parker.admin.dto.UserDto;
-import com.parker.admin.exception.CustomException;
-import com.parker.admin.util.SecurityUtil;
+import com.parker.common.exception.CustomException;
+import com.parker.dto.UserDto;
 import com.parker.jpa.entity.Authority;
 import com.parker.jpa.entity.User;
 import com.parker.jpa.repository.UserRepository;
+import com.parker.util.SecurityUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.MessageSource;
@@ -13,13 +13,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.ObjectUtils;
 
 import java.util.Collections;
 import java.util.Locale;
 import java.util.Optional;
 
-import static com.parker.admin.exception.enums.ResponseErrorCode.FAIL_2000;
+import static com.parker.common.exception.enums.ResponseErrorCode.FAIL_2000;
+
 
 /**
  * com.parker.admin.api.v1.login.service
@@ -46,9 +46,9 @@ public class UserService {
     private final MessageSource messageSource;
 
     @Transactional
-    public User signUp(UserDto userDto){
-        if(userRepository.findOneWithAuthoritiesByUserName(userDto.getUserName()).isPresent()){
-            throw new CustomException(FAIL_2000.code(), messageSource.getMessage("error.2000",new String[]{userDto.getUserName()}, Locale.getDefault()), HttpStatus.INTERNAL_SERVER_ERROR);
+    public User signUp(UserDto userDto) {
+        if (userRepository.findOneWithAuthoritiesByUserName(userDto.getUserName()).isPresent()) {
+            throw new CustomException(FAIL_2000.code(), messageSource.getMessage("error.2000", new String[]{userDto.getUserName()}, Locale.getDefault()), HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
         Authority authority =
@@ -71,13 +71,13 @@ public class UserService {
     // 좋은점은 그래서 성능 향상 됨
     // 아래의 메서드는 userName param으로 모든 유저 정보 검색 가능하고
     @Transactional(readOnly = true)
-    public Optional<User> getUserWithAuthorities(String userName){
+    public Optional<User> getUserWithAuthorities(String userName) {
         return userRepository.findOneWithAuthoritiesByUserName(userName);
     }
 
     // 아래의 메서드는 현재 로그인된 사용자의 정보만 가져올 수 있다
     @Transactional(readOnly = true)
-    public Optional<User> getMyUserWithAuthorities(){
+    public Optional<User> getMyUserWithAuthorities() {
         return SecurityUtil.getCurrentUserName().flatMap(userRepository::findOneWithAuthoritiesByUserName);
     }
 }

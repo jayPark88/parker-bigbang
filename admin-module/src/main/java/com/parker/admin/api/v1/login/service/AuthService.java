@@ -1,10 +1,10 @@
 package com.parker.admin.api.v1.login.service;
 
-import com.parker.admin.common.CommonResponse;
-import com.parker.admin.dto.LoginDto;
-import com.parker.admin.dto.TokenDto;
-import com.parker.admin.jwt.JwtFilter;
-import com.parker.admin.jwt.TokenProvider;
+import com.parker.common.CommonResponse;
+import com.parker.dto.LoginDto;
+import com.parker.dto.TokenDto;
+import com.parker.jwt.JwtFilter;
+import com.parker.jwt.TokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

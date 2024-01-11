@@ -1,4 +1,4 @@
-package com.parker.admin.service;
+package com.parker.service;
 
 import com.parker.jpa.repository.UserRepository;
 import jakarta.transaction.Transactional;
@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
  * ㄴ UserDetailService
  *
  * <pre>
- * description :
+ * description :사용자 인증을 위한 사용자 상세 정보를 제공하는 서비스 클래스. Spring Security의 UserDetailsService 인터페이스를 구현함.
  * </pre>
  *
  * <pre>
@@ -32,11 +32,19 @@ import java.util.stream.Collectors;
  * @author parker
  * @version 1.0
  */
+
 @RequiredArgsConstructor
 @Component("userDetailsService")
 public class CustomUserDetailsService implements UserDetailsService {
     private final UserRepository userRepository;
     private final MessageSource messageSource;
+
+    /**
+     * 사용자명을 기반으로 사용자 정보를 로드하는 메서드.
+     * @param userName 로그인 시 입력한 사용자명
+     * @return UserDetails 객체 (Spring Security에서 사용자 정보를 나타내는 인터페이스)
+     * @throws UsernameNotFoundException 지정된 사용자명을 찾을 수 없을 때 발생하는 예외
+     */
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
@@ -45,14 +53,23 @@ public class CustomUserDetailsService implements UserDetailsService {
                 .orElseThrow(() -> new UsernameNotFoundException(userName + " -> 데이터베이스에서 찾을 수 없습니다."));
     }
 
+    /**
+     * 주어진 사용자 정보를 기반으로 UserDetails 객체를 생성하는 메서드.
+     * @param userName 사용자명
+     * @param user 사용자 엔터티 객체
+     * @return UserDetails 객체
+     */
     private User createUser(String userName, com.parker.jpa.entity.User user){
         if(!user.isActivated()){
             throw new RuntimeException(userName + "->"+ messageSource.getMessage("not.activated", new String[]{}, Locale.getDefault()));
         }
+
+        // 사용자의 권한 정보를 GrantedAuthority로 변환하여 리스트로 저장
         List<GrantedAuthority>grantedAuthorities =
                 user.getAuthorities().stream()
                         .map(authority -> new SimpleGrantedAuthority(authority.getAuthorityName()))
                         .collect(Collectors.toList());
+        // UserDetails 객체를 생성하여 반환
         return new User(
                 user.getUserName()
                 ,user.getPassword()

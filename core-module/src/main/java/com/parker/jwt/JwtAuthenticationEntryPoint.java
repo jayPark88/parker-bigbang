@@ -1,7 +1,7 @@
-package com.parker.admin.jwt;
+package com.parker.jwt;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.parker.admin.common.CommonResponse;
+import com.parker.common.CommonResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -13,8 +13,8 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 import java.util.Locale;
 
-import static com.parker.admin.exception.enums.ResponseErrorCode.FAIL_401;
-import static com.parker.admin.exception.enums.ResponseErrorCode.FAIL_403;
+import static com.parker.common.exception.enums.ResponseErrorCode.FAIL_401;
+
 
 /**
  * com.parker.admin.jwt
@@ -38,9 +38,10 @@ import static com.parker.admin.exception.enums.ResponseErrorCode.FAIL_403;
 public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
     private final ObjectMapper objectMapper;
     private final MessageSource messageSource;
+
     @Override
-    public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException{
-        CommonResponse<?> commonResponse = new CommonResponse<>(FAIL_401.code(), messageSource.getMessage("http.status.unauthorized",null, Locale.getDefault()));
+    public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException {
+        CommonResponse<?> commonResponse = new CommonResponse<>(FAIL_401.code(), messageSource.getMessage("http.status.unauthorized", null, Locale.getDefault()));
 
         String responseString = objectMapper.writeValueAsString(commonResponse);
 

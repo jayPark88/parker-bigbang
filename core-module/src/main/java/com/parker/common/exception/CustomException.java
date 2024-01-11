@@ -1,4 +1,4 @@
-package com.parker.admin.exception;
+package com.parker.common.exception;
 
 import lombok.Getter;
 import org.springframework.http.HttpStatus;

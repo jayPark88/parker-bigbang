@@ -1,4 +1,4 @@
-package com.parker.admin.util;
+package com.parker.util;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
@@ -29,7 +29,6 @@ public class SecurityUtil {
 
     // 인스턴스 생성 못하게 하려고 only static 전용
     private SecurityUtil(){
-
     }
 
     public static Optional<String> getCurrentUserName(){

@@ -1,6 +1,5 @@
-package com.parker.admin.jwt;
+package com.parker.jwt;
 
-import com.parker.admin.jwt.TokenProvider;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;

@@ -1,6 +1,5 @@
-package com.parker.admin.exception.enums;
+package com.parker.common.exception.enums;
 
-import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 
 /**

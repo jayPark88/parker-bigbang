@@ -1,4 +1,4 @@
-package com.parker.admin.dto;
+package com.parker.dto;
 
 
 import jakarta.validation.constraints.NotNull;

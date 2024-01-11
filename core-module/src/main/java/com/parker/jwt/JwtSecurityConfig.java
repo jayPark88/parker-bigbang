@@ -1,4 +1,4 @@
-package com.parker.admin.jwt;
+package com.parker.jwt;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.config.annotation.SecurityConfigurerAdapter;
